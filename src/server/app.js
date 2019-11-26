@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
+const basicAuth = require('express-basic-auth');
 
 module.exports = function() {
   const hbs = exphbs.create({
@@ -17,7 +18,6 @@ module.exports = function() {
   const app = express();
 
   const defaultConfig = require(path.join(__dirname, 'config'));
-  console.log('DEFAULTCONFIG:', defaultConfig)
 
   const Queues = require('./queue');
 
@@ -34,6 +34,10 @@ module.exports = function() {
   app.engine('hbs', hbs.engine);
 
   app.use(bodyParser.json());
+  app.use(basicAuth({
+    users: { [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD },
+    challenge: true,
+  }));
 
   return {
     app,
