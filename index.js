@@ -23,6 +23,8 @@ function run(config, listenOpts = {}) {
   return app;
 }
 
-if (require.main === module) run();
+if (require.main === module) {
+  run(null, { port: process.env.PORT });
+}
 
 module.exports = run;
