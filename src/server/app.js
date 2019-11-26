@@ -16,7 +16,8 @@ module.exports = function() {
 
   const app = express();
 
-  const defaultConfig = require(path.join(__dirname, 'config', 'index.json'));
+  const defaultConfig = require(path.join(__dirname, 'config'));
+  console.log('DEFAULTCONFIG:', defaultConfig)
 
   const Queues = require('./queue');
 
