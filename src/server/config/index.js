@@ -16,6 +16,11 @@ module.exports = {
     },
     {
       ...base,
+      name: 'adalo-cert-valiation',
+      hostId: 'Cert Validation',
+    },
+    {
+      ...base,
       name: 'proton-database-updates',
       hostId: 'Updates Queue',
     },
@@ -28,6 +33,11 @@ module.exports = {
       ...base,
       name: 'adaloIOSBuilds',
       hostId: 'iOS Builds',
+    },
+    {
+      ...base,
+      name: 'iosCredentials',
+      hostId: 'iOS Credentials',
     }
   ]
 }

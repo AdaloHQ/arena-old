@@ -14,7 +14,7 @@ function run(config, listenOpts = {}) {
   app.use(app.locals.appBasePath, express.static(path.join(__dirname, 'public')));
   app.use(app.locals.appBasePath, routes);
 
-  const port = listenOpts.port || 4567;
+  const port = listenOpts.port || 5678;
   const host= listenOpts.host || '0.0.0.0'; // Default: listen to all network interfaces.
   if (!listenOpts.disableListen) {
     app.listen(port, host, () => console.log(`Arena is running on port ${port} at host ${host}`));

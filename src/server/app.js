@@ -34,10 +34,15 @@ module.exports = function() {
   app.engine('hbs', hbs.engine);
 
   app.use(bodyParser.json());
-  app.use(basicAuth({
-    users: { [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD },
-    challenge: true,
-  }));
+
+  if (process.env.AUTH_USERNAME) {
+    console.log('BASIC AUTH WITH', process.env.AUTH_USERNAME, process.env.AUTH_PASSWORD)
+
+    app.use(basicAuth({
+      users: { [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD },
+      challenge: true,
+    }));
+  }
 
   return {
     app,
