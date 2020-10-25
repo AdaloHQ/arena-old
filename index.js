@@ -3,8 +3,8 @@ const path = require('path');
 const Arena = require('./src/server/app');
 const routes = require('./src/server/views/routes');
 
-function run(config, listenOpts = {}) {
-  const {app, Queues} = Arena();
+async function run(config, listenOpts = {}) {
+  const {app, Queues} = await Arena();
 
   if (config) Queues.setConfig(config);
   Queues.useCdn = typeof listenOpts.useCdn !== 'undefined' ? listenOpts.useCdn : true;

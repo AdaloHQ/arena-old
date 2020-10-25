@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const basicAuth = require('express-basic-auth');
+const { createSlackCron } = require('../../slack')
 
-module.exports = function() {
+module.exports = async function() {
   const hbs = exphbs.create({
     defaultLayout: `${__dirname}/views/layout`,
     handlebars,
@@ -42,6 +43,10 @@ module.exports = function() {
       users: { [process.env.AUTH_USERNAME]: process.env.AUTH_PASSWORD },
       challenge: true,
     }));
+  }
+
+  if (process.env.SLACK_WEBHOOK && process.env.SLACK_CRON_LIMIT) {
+    await createSlackCron(queues);
   }
 
   return {

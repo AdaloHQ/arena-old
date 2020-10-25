@@ -1,4 +1,11 @@
-# Arena
+# Adalo's Custom Implementation of Arena
+Adalo adds new queues to Arena and even has a Slack notification set up so that if the compile queue reaches a certain limit, it will notify the outages-emergencies Slack channel.
+
+## Setup
+For the Slack notifications to work, you have to have a .env file set up with `SLACK_WEBHOOK` (url) and `SLACK_CRON_LIMIT` (max number of waiting workers) environment variables. 
+
+The Slack notifications run on a cron that checks every 5 seconds to see if the number of jobs waiting in the queue are over the limit. If the queue is over the limit, it will send an alert to the outages-emergency Slack channel.
+_____
 
 An intuitive Web GUI for [Bee Queue](https://github.com/bee-queue/bee-queue) and [Bull](https://github.com/optimalbits/bull). Built on Express so you can run Arena standalone, or mounted in another app as middleware.
 
