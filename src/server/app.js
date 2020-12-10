@@ -5,6 +5,7 @@ const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const basicAuth = require('express-basic-auth');
 const { createSlackCron } = require('../../slack')
+const { scaleWorkerDynos } = require('../../workerscale')
 
 module.exports = async function() {
   const hbs = exphbs.create({
@@ -47,6 +48,10 @@ module.exports = async function() {
 
   if (process.env.SLACK_WEBHOOK && process.env.SLACK_CRON_LIMIT) {
     await createSlackCron(queues);
+  }
+
+  if (process.env.HEROKU_API_TOKEN) {
+    await scaleWorkerDynos(queues);
   }
 
   return {
