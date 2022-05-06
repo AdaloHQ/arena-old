@@ -38,7 +38,7 @@ const createSlackCron = async (queues) => {
 
       const sendSlackWarning = async scale => {
         const limitOfJobs = getNumberOfJobs(limit, scale)
-        console.log(jobCounts.waiting)
+
         if (jobCounts.waiting < limitOfJobs && notified[scale]) {
           await webhook.send({ text: `${limitOfJobs <= 100 ? '🥳 ' : ''}🔽 The compile queue has gone down. It now has less than ${limitOfJobs} jobs in it!` })
           notified[scale] = false
