@@ -1,3 +1,7 @@
+# DEPRECATED & ARCHIVED
+
+You may be looking for https://github.com/AdaloHQ/queue-monitor instead.
+
 # Adalo's Custom Implementation of Arena
 Adalo adds new queues to Arena and even has a Slack notification set up so that if the compile queue reaches a certain limit, it will notify the outages-emergencies Slack channel.
 
